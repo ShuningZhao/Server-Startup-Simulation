@@ -88,6 +88,7 @@ For random model I have also ran multiple repetitions checking if there are any 
 On top of all that, I have also run multiple test where I have printed out the arrival time and service time in random mode, re-loading it into trace model to see if my results are consistent. The results of my test can be found in the folder **Unit Test** in the zip file submitted.
 
 **Implementation of reproducible results**  
+
 | Simulation Number | Tc | Seed |
 | --- | --- | --- |
 | Simulation 1 | 0.1 | 100 |
@@ -100,6 +101,7 @@ On top of all that, I have also run multiple test where I have printed out the a
 | Simulation 8 | 10 | 230 |
 | Simulation 9 | 10 | 123 |
 | Simulation 10 | 10 | 156 |
+
 **Statistical Analysis of simulation results.**  
 For the baseline system with Tc=0.1
  and time\_end = 20000 after repeating the simulation 5 times with different seeds we get the figure below.
