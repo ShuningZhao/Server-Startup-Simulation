@@ -3,12 +3,11 @@ Simulation on Server Setup in Data Centres
 
 **Shuning Zhao June 2018**
 </center></h1>
-**Introduction**
 
+**Introduction**  
 This report is about the simulation of a data center with one dispatcher and five servers. Where we try to study the dilemma faced by data center operators on the trade-off between energy consumption and latency. The sections of this report include verification of the correctness of the interarrival probability distribution and service time distribution, verification of the correctness of the simulation code, implementation of reproducible results, statistical analysis of simulation results and explanation of how the simulation parameters are chosen.
 
-**Description of the server system**
-
+**Description of the server system**  
 Figure 1 depicts the computer system to be considered in this project. The system consists of a
 dispatcher as its front-end and m servers at its back-end. There is only one queue and it is located
 at the dispatcher; there are no queues at the computer servers. You can assume that:
@@ -37,8 +36,7 @@ useful work. There have been various proposals to reduce the power consumption a
 discussed in Section 3 of A. Gandhi, S. Doroudi, M. Harchol-Balter and A. Scheller-Wolf. ["Exact analysis of the
 M/M/k/setup class of Markov chains via recursive renewal reward"](https://link.springer.com/article/10.1007/s11134-014-9409-7), Queueing Systems, 2014. In this simulation we will simulate the setup/delayedoff mode of operation which is similar (but not identical) to that discussed in Section 3.2 of the paper above.
 
-**Verification of the interarrival probability distribution and service time distribution.**
-
+**Verification of the interarrival probability distribution and service time distribution.**  
 For the interarrival probability distribution we have an exponential distribution with the mean arrival rate of jobs as λ=0.35.
 
 To verify the random numbers generated are indeed from the distribution mentioned above, I have decided to plot the empirical distribution of the interarrival time from the results of the simulation against the pdf of the theoretical interarrival probability distribution. As well as conducting a Kolmogorov-Smirnov test which is used to decide if a sample comes from a population of a specific distribution (Massey, 1951).
@@ -82,16 +80,27 @@ Similar outputs were also achieved for the improved system since the seeds used 
 
 The relative codes are stored in the folder **01.KS\_Test** where the file **KS\_Test.ipynb** contains the code for both the plots and the Kolmogorov-Smirnov tests. The file **arrival.csv** and **service.csv** contains the interarrival and service time data respectively.
 
-**Verification of the correctness of the simulation code.**
-
+**Verification of the correctness of the simulation code.**  
 To verify that the code used for my simulation are correct, I have run the two examples provided in the project specification. On top of that I have also ran a random simulation with the arrival and service time printed out. Calculated the results by hand to see if it matches with my results, then loaded the same arrival time and service times into trace mode to see if the results also match one of such examples can be found in the **Test 3** folder in **Unit Test**.
 
 For random model I have also ran multiple repetitions checking if there are any departure times that exceeds the time\_end defined for the simulation.
 
 On top of all that, I have also run multiple test where I have printed out the arrival time and service time in random mode, re-loading it into trace model to see if my results are consistent. The results of my test can be found in the folder **Unit Test** in the zip file submitted.
 
-**Statistical Analysis of simulation results.**
-
+**Implementation of reproducible results**  
+| Simulation Number | Tc | Seed |
+| --- | --- | --- |
+| Simulation 1 | 0.1 | 100 |
+| Simulation 2 | 0.1 | 150 |
+| Simulation 3 | 0.1 | 230 |
+| Simulation 4 | 0.1 | 123 |
+| Simulation 5 | 0.1 | 156 |
+| Simulation 6 | 10 | 100 |
+| Simulation 7 | 10 | 150 |
+| Simulation 8 | 10 | 230 |
+| Simulation 9 | 10 | 123 |
+| Simulation 10 | 10 | 156 |
+**Statistical Analysis of simulation results.**  
 For the baseline system with Tc=0.1
  and time\_end = 20000 after repeating the simulation 5 times with different seeds we get the figure below.
 
@@ -120,7 +129,7 @@ The detail of all repetitions of the simulation are as follow
 | Rep. 2 | 6.0583 | 4.0357 | 2.0227 |
 | Rep. 3 | 6.1109 | 4.0402 | 2.0708 |
 | Rep. 4 | 6.0550 | 4.0226 | 2.0325 |
-| Rep 5. | 6.0833 | 4.0244 | 2.0589 |
+| Rep. 5 | 6.0833 | 4.0244 | 2.0589 |
 
 We compute the 95% confidence interval of the data above and the confidence interval is [2.0169, 2.0687] which is higher than 2.
 
@@ -139,7 +148,6 @@ The transient removal I chose w = 1000 as seen from the graphs for transient rem
 
 For the number of replications, I started off with five replications. After removing the transient, the 95% confidence interval for my estimated mean response time were [6.051,6.104] and [4.010,4.059] for the baseline and improved system respectively. The length of those intervals aren&#39;t very wide hence I have decided to stick with 5 replications.
 
-**References**
-
+**References**  
 - Casella, G. and Berger, R.L., 2002. _Statistical inference_ (Vol. 2). Pacific Grove, CA: Duxbury.
 - Massey Jr, F.J., 1951. The Kolmogorov-Smirnov test for goodness of fit. _Journal of the American statistical Association_, _46_(253), pp.68-78.
